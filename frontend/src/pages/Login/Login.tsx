@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../../services/authService";
-import { useSession } from "../../hooks/useSession";
+
 
 interface FormData {
     username: string;
@@ -14,7 +14,6 @@ const Login = () => {
         password:'',
     })
 
-    const {sessionToken, setSessionToken} = useSession();
     const navigate = useNavigate();
 
 
@@ -30,9 +29,9 @@ const Login = () => {
       try {
         const result = await loginService(formData)
         if( result?.session_token){
-            setSessionToken(result.session_token);
+          localStorage.setItem('sessiontoken', result.session_token);
             navigate("/home");
-            console.log("token generate_session_tokenuardado", sessionToken)
+            console.log("token generate_session_tokenuardado", result.session_token)
         }
       } catch (error) {
         console.error("Error:", error);

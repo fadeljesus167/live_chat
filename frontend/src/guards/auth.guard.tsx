@@ -1,12 +1,17 @@
-import { useSession } from "../hooks/useSession";
-import { Navigate, Outlet } from "react-router-dom";
+
+import { useNavigate, Outlet } from "react-router-dom";
+import { useEffect } from 'react';
 
 export const AuthGuard = () => {
-    const { searchToken } = useSession();
-    const sessionToken = searchToken();
-    console.log("guardian ",sessionToken)
+    const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem('sessionToken');
+        if (!token) {
+          navigate('/login'); // Redirige al login si no hay token
+        }
+      }, [navigate]);
 
-    return sessionToken ? <Outlet /> : <Navigate replace to={"/"} />
+    return <Outlet /> 
 }
 
 export default AuthGuard;
