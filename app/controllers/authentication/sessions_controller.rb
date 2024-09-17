@@ -1,4 +1,5 @@
 class Authentication::SessionsController < ApplicationController
+  skip_before_action :protect_resources
   def create
     user ||= User.find_by(username: params[:username])
 

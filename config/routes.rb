@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   namespace :authentication do
     resources :sessions, only: %w[create destroy]
   end
+  resources :messages, only: %w[create index]
 end

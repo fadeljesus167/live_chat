@@ -31,7 +31,7 @@ const Login = () => {
         if( result?.session_token){
           localStorage.setItem('sessiontoken', result.session_token);
             navigate("/home");
-            console.log("token generate_session_tokenuardado", result.session_token)
+            console.log("token generate_session_token guardado", result.session_token)
         }
       } catch (error) {
         console.error("Error:", error);
