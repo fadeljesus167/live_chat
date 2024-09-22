@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 export const AuthGuard = () => {
     const navigate = useNavigate();
     useEffect(() => {
-        const token = localStorage.getItem('sessionToken');
+        const token = localStorage.getItem('sessiontoken');
         if (!token) {
           navigate('/login'); // Redirige al login si no hay token
         }
