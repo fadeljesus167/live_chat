@@ -10,9 +10,10 @@ interface Message {
 
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
-    {id:1,
-        content:"prueba de un mensajes",
-        sender: "daztan"
+    { 
+      id:1,
+      content:"prueba de un mensajes",
+      sender: "daztan"
     },
   ]);
 
@@ -27,7 +28,7 @@ const Chat = () => {
 }
 
   return (
-    <div className='border-black border-2 p-4 max-w-[600px]'>
+    <div className='flex-col border-black border-2 p-4 max-w-[600px]'>
       <MessageList messages={messages} />
       <MessageForm onSendMessage={handleSendMessage} />
     </div>

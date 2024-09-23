@@ -28,8 +28,11 @@ const Login = () => {
         e.preventDefault()
       try {
         const result = await loginService(formData)
-        if( result?.session_token){
+
+        console.log(result.username)
+        if( result?.session_token && result?.username ){
           localStorage.setItem('sessiontoken', result.session_token);
+          localStorage.setItem('username', result.username);
             navigate("/home");
             console.log("token generate_session_token guardado", result.session_token)
         }

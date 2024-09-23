@@ -6,7 +6,7 @@ class Authentication::SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       token = EncryptService.generate_session_token
       add_new_user_session(user.id, token)
-      render json: { session_token: token }, status: :created
+      render json: { session_token: token, username: user.username }, status: :created
     else
       render json: {}, status: :unprocessable_entity
     end

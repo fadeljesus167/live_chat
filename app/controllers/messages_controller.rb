@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     @message = Message.new(new_message)
 
     if @message.save
-      render json: {}, status: :created
+      render json: { confirm: "el mensaje fue guardado :D" }, status: :created
     else
       render json: { error: "failed to send the message" }, status: :unprocessable_entity
     end

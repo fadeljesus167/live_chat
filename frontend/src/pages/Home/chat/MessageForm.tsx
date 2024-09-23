@@ -9,8 +9,10 @@ const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const token = localStorage.getItem('sessionToken');
-    if (content.trim() && token) {
+    const token = localStorage.getItem('sessiontoken');
+    const sender = localStorage.getItem('username')
+    console.log(token)
+    if (content.trim() && token && sender) {
         onSendMessage(content, token);
         setContent(''); // Limpiar campo después de enviar
       } else {
@@ -19,7 +21,7 @@ const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
     };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="border-2 border-r-4 my-4" >
       <input
         type="text"
         value={content}
@@ -27,7 +29,7 @@ const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
         placeholder="Escribe tu mensaje"
         required
       />
-      <button type="submit">Enviar</button>
+      <button type="submit" className=" bg-blue-500">Enviar</button>
     </form>
   );
 };
