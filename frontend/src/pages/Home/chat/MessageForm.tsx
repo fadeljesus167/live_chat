@@ -1,18 +1,19 @@
 import { useState } from 'react';
 
 interface MessageFormProps {
-    onSendMessage: (content: string, sender: string) => void;
+    onSendMessage: (content: string, token: string) => void;
 }
+
 
 const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
   const [content, setContent] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
     const token = localStorage.getItem('sessiontoken');
-    const sender = localStorage.getItem('username')
-    console.log(token)
-    if (content.trim() && token && sender) {
+
+    if (content.trim() && token) {
         onSendMessage(content, token);
         setContent(''); // Limpiar campo después de enviar
       } else {
